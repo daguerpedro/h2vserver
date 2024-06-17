@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H2V</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
+</head>
+
+<body>
+    <div class="ui" style="padding-top: 25px;"></div>
+    <div class="ui raised very padded center aligned text container segment">
+        <div class="ui icon header">
+            <h1 class="ui center aligned header">H2V</h1>
+            <i class="shield alternate icon"></i>
+            É necessário fazer login para acessar esse site.
+        </div>
+        <form class="ui form" style="padding: 5px;">
+            <div class="ui icon input">
+                <input id="h2vpass" type="password" placeholder="Senha">
+                <i class="search icon"></i>
+            </div>
+            <div class="ui primary submit button">
+                Entrar
+                <i class="unlock icon"></i>
+            </div>
+            <div class="ui error message"></div>
+        </form>
+    </div>
+
+    <script src="./scripts/login.js"></script>
+</body>
+
+</html>
