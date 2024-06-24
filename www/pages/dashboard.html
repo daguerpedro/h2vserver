@@ -16,19 +16,65 @@
 </head>
 
 <body>
-    <div class="ui" style="padding-top: 25px;"></div>
-    <div class="ui raised very padded center aligned text container segment">
-        <div class="ui icon header">
-            <h1 class="ui center aligned header">H2V</h1>
-
+    <div class="ui left fixed vertical menu" style="display: flex; flex-direction: column;">
+        <div class="principal" style="flex-grow: 1; display: flex; flex-direction: column;">
+            <div class="item" style="padding: 25px; cursor: default;">
+                <p class="ui center aligned header">H2V</p>
+            </div>
+            <a class="active item" id="b_reator1">
+                <i class="flask icon"></i>
+                <p>Reator 1</p>
+            </a>
+            <a class="item" id="b_reator2">
+                <i class="flask icon"></i>
+                Reator 2
+            </a>
         </div>
-        <div class="ui">Bem vindo!</div>
-        <div>
-            <canvas id="myChart"></canvas>
-        </div>      
+        <div class="outro" style="margin-bottom: 20px;">
+            <a class="item" style="width: 100%; display: inline-flex; justify-content: center;">
+                <button id="sair" class="ui red icon button">
+                    <i class="sign out alternate icon"></i>
+                    Desconectar
+                </button>
+            </a>
+        </div>
     </div>
 
+    <div class="ui" style="padding-top: 25px;"></div>
+
+    <div class="ui fixed container">
+        <div id="reator1">
+            Reator 1
+            <div class="ui two column grid">
+                <div class="column">
+                    <canvas id="tensao1"></canvas>
+                </div>
+                <div class="column">
+                    <canvas id="potencia1"></canvas>
+                </div>
+                <div class="column">
+                    <canvas id="temperatura1"></canvas>
+                </div>
+            </div>
+        </div>
+        <div id="reator2">
+            Reator 2
+            <div class="ui two column grid">
+                <div class="column">
+                    <canvas id="tensao2"></canvas>
+                </div>
+                <div class="column">
+                    <canvas id="potencia2"></canvas>
+                </div>
+                <div class="column">
+                    <canvas id="temperatura2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="./scripts/dashboard.js"></script>
+    <script src="./scripts/nav.js"></script>
+
 </body>
 
 </html>
