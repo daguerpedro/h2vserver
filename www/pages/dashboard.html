@@ -21,13 +21,25 @@
             <div class="item" style="padding: 25px; cursor: default;">
                 <p class="ui center aligned header">H2V</p>
             </div>
-            <a class="active item" id="b_reator1">
-                <i class="flask icon"></i>
-                <p>Reator 1</p>
-            </a>
-            <a class="item" id="b_reator2">
-                <i class="flask icon"></i>
-                Reator 2
+            <div class="item">
+                <div class="header">Reator 1</div>
+                <div class="menu">
+                    <a class="active item" id="v1">Tensao</a>
+                    <a class="item" id="i1">Corrente</a>
+                    <a class="item" id="p1">Potência</a>
+
+                </div>
+            </div>
+            <div class="item">
+                <div class="header">Reator 2</div>
+                <div class="menu">
+                    <a class="item" id="v2">Tensão</a>
+                    <a class="item" id="i2">Corrente</a>
+                    <a class="item" id="p2">Potência</a>
+                </div>
+            </div>
+            <a class="item" id="t">
+                Temperatura
             </a>
         </div>
         <div class="outro" style="margin-bottom: 20px;">
@@ -39,41 +51,16 @@
             </a>
         </div>
     </div>
-
-    <div class="ui" style="padding-top: 25px;"></div>
-
-    <div class="ui fixed container">
-        <div id="reator1">
-            Reator 1
-            <div class="ui two column grid">
-                <div class="column">
-                    <canvas id="tensao1"></canvas>
-                </div>
-                <div class="column">
-                    <canvas id="potencia1"></canvas>
-                </div>
-                <div class="column">
-                    <canvas id="temperatura1"></canvas>
-                </div>
-            </div>
-        </div>
-        <div id="reator2">
-            Reator 2
-            <div class="ui two column grid">
-                <div class="column">
-                    <canvas id="tensao2"></canvas>
-                </div>
-                <div class="column">
-                    <canvas id="potencia2"></canvas>
-                </div>
-                <div class="column">
-                    <canvas id="temperatura2"></canvas>
-                </div>
-            </div>
+    <div style="margin-left: 225px; height: 100vh; padding: 25px;">
+        <p id="titulo"></p>
+        <div>
+            <canvas id="grafico" style="width: 100%;"></canvas>
         </div>
     </div>
-    <script src="./scripts/dashboard.js"></script>
+
     <script src="./scripts/nav.js"></script>
+    <script src="./scripts/graficos.js"></script>
+    <script src="./scripts/socket.js"></script>
 
 </body>
 

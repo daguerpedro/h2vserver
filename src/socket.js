@@ -1,30 +1,34 @@
 const Server = require('socket.io').Server;
 let io = new Server()
 
-const clients = require('./clients')
+const datahandler = require('./datahandler')
 
 function init(server)
 {
     io = new Server(server);
-    io.on('connection', (socket) => {
-        clients.pushClientID(socket.id);
-
+    io.on('connection', (socket) => {  
+        console.log(`[+] Socket: ${socket.id}`)    
+         
         socket.on('disconnect', () => {
-            clients.removeClientID(socket.id);
+            console.log(`[-] Socket: ${socket.id}`)      
+        });        
+
+        socket.on('requestLatest', ()=> {
+            sendToID(socket.id, 'latest', datahandler.latestData);
         });
     });
 }
 
-function emit(eventName, ...data)
+function sendGlobal(eventName, ...data)
 {
     io.volatile.emit(eventName, data);
 }
 
-function tell(id, ...data)
+function sendToID(id, event, ...data)
 {
-    io.volatile.to(id).emit(data);
+    io.to(id).emit(event, data);
 }
 
 
 module.exports.init = init;
-module.exports.emit = emit;
+module.exports.sendGlobal = sendGlobal;

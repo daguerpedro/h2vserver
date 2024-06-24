@@ -1,17 +1,26 @@
-$('#reator2').hide();
+function setActive(id, tipoGrafico) {
+    if ($(".active").length > 0)
+        $(".active").removeClass("active")
 
-$('#b_reator1').click(() => {
-    $('#reator2').hide();
-    $('#b_reator2').removeClass('active');
+    $(`${id}`).addClass('active')
+
+    graficoAtivo = tipoGrafico;
+    atualizarGrafico();
+}
+
+$( document ).ready(function() {
+    $("#v1").click(() => setActive("#v1", GRAFICOS.TENSAO1))
+    $("#v2").click(() => setActive("#v2", GRAFICOS.TENSAO2))
     
-    $('#reator1').show();    
-    $('#b_reator1').addClass('active');
-})
+    $("#i1").click(() => setActive("#i1", GRAFICOS.CORRENTE1))
+    $("#i2").click(() => setActive("#i2", GRAFICOS.CORRENTE2))
+    
+    $("#p1").click(() => setActive("#p1", GRAFICOS.POTENCIA1))
+    $("#p2").click(() => setActive("#p2", GRAFICOS.POTENCIA2))
+    
+    $("#t").click(() => setActive("#t", GRAFICOS.TEMPERATURA))
 
-$('#b_reator2').click(() => {
-    $('#reator1').hide();
-    $('#b_reator1').removeClass('active');
-
-    $('#reator2').show();    
-    $('#b_reator2').addClass('active');
-})
+    $('#sair').click(() => {
+        location.replace('/logout')
+    });
+});
