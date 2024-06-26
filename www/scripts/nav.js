@@ -1,10 +1,12 @@
-function setActive(id, tipoGrafico) {
-    if ($(".active").length > 0)
-        $(".active").removeClass("active")
+function setActive(id, tipoGrafico) {  
+    tipoGrafico.ativo = !tipoGrafico.ativo;
+    let estaAtivo = tipoGrafico.ativo;
 
-    $(`${id}`).addClass('active')
+    if(estaAtivo) 
+        $(`${id}`).addClass('active')
+    else
+        $(`${id}`).removeClass("active")
 
-    graficoAtivo = tipoGrafico;
     atualizarGrafico();
 }
 
