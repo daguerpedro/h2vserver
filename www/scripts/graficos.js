@@ -1,54 +1,64 @@
 const GRAFICOS = {
     NENHUM: "Nenhum",
 
-    TENSAO1: "Tensão 1 (mV)",
-    TENSAO2: "Tensão 2 (mV)",
+    TENSAO1: {
+        titulo: "Tensão 1 (mV)",
+        ativo: true,
+    },
+    TENSAO2: {
+        titulo: "Tensão 2 (mV)",
+        ativo: false,
+    },
 
-    CORRENTE1: "Corrente 1 (mA)",
-    CORRENTE2: "Corrente 2 (mA)",
+    CORRENTE1: {
+        titulo: "Corrente 1 (mA)",
+        ativo: false
+    },
 
-    POTENCIA1: "Potência 1 (mW)",
-    POTENCIA2: "Potência 2 (mW)",
+    CORRENTE2: {
+        titulo: "Corrente 2 (mA)",
+        ativo: false,
+    },
 
-    TEMPERATURA: "Temperatura (°C)"
+    POTENCIA1: {
+        titulo: "Potência 1 (mW)",
+        ativo: false,
+    },
+    POTENCIA2: {
+        titulo: "Potência 2 (mW)",
+        ativo: false,
+    },
+
+    TEMPERATURA: {
+        titulo: "Temperatura (°C)",
+        ativo: false
+    }
 };
-
-let graficoAtivo = GRAFICOS.TENSAO1;
 
 function criarGrafico(canvasID) {
     return new Chart(document.getElementById(canvasID), {
         type: 'line',
-        options: {
-            plugins: { legend: { display: false } }, scales: {
-                y: {
-                    min: 0,
-                    max: 100,
-                }
-            }
-        },
+        options: { plugins: { legend: { display: false } }, },
         data: {
             labels: [],
             datasets: [
-                { graficoTipo: GRAFICOS.TENSAO1, label: GRAFICOS.TENSAO1, data: [], hidden: true },
-                { graficoTipo: GRAFICOS.TENSAO2, label: GRAFICOS.TENSAO2, data: [], hidden: true },
-                { graficoTipo: GRAFICOS.CORRENTE1, label: GRAFICOS.CORRENTE1, data: [], hidden: true },
-                { graficoTipo: GRAFICOS.CORRENTE2, label: GRAFICOS.CORRENTE2, data: [], hidden: true },
-                { graficoTipo: GRAFICOS.POTENCIA1, label: GRAFICOS.POTENCIA1, data: [], hidden: true },
-                { graficoTipo: GRAFICOS.POTENCIA2, label: GRAFICOS.POTENCIA2, data: [], hidden: true },
-                { graficoTipo: GRAFICOS.TEMPERATURA, label: GRAFICOS.TEMPERATURA, data: [], hidden: true },
+                { graficoTipo: GRAFICOS.TENSAO1, label: GRAFICOS.TENSAO1.titulo, data: [], hidden: true },
+                { graficoTipo: GRAFICOS.TENSAO2, label: GRAFICOS.TENSAO2.titulo, data: [], hidden: true },
+                { graficoTipo: GRAFICOS.CORRENTE1, label: GRAFICOS.CORRENTE1.titulo, data: [], hidden: true },
+                { graficoTipo: GRAFICOS.CORRENTE2, label: GRAFICOS.CORRENTE2.titulo, data: [], hidden: true },
+                { graficoTipo: GRAFICOS.POTENCIA1, label: GRAFICOS.POTENCIA1.titulo, data: [], hidden: true },
+                { graficoTipo: GRAFICOS.POTENCIA2, label: GRAFICOS.POTENCIA2.titulo, data: [], hidden: true },
+                { graficoTipo: GRAFICOS.TEMPERATURA, label: GRAFICOS.TEMPERATURA.titulo, data: [], hidden: true },
             ]
         }
     })
 }
 
 const __grafico = criarGrafico('grafico');
-const maxValues = 30;
 
 function atualizarGrafico() {
-    $('#titulo').text(graficoAtivo)
-
-    __grafico.data.datasets.forEach((set) => {
-        set.hidden = set.graficoTipo != graficoAtivo;
+    __grafico.data.datasets.forEach((set) => { 
+        set.hidden = set.graficoTipo.ativo == false;
     })
 
     __grafico.update();
@@ -66,8 +76,8 @@ function addData(hora, raw) {
     }
     __grafico.data.labels.push(hora);
 
-    if (__grafico.data.labels.length > maxValues) {
-        let quantos = (__grafico.data.labels.length - maxValues);
+    if (__grafico.data.labels.length > maxValues()) {
+        let quantos = (__grafico.data.labels.length - maxValues());
         __grafico.data.labels.splice(0, quantos);
         __grafico.data.datasets.forEach((set) => {
             set.data.splice(0, (quantos))
@@ -78,5 +88,4 @@ function addData(hora, raw) {
 
 $(document).ready(function () {
     atualizarGrafico();
-
 })

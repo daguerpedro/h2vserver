@@ -26,5 +26,4 @@ socket.init(server);
 
 server.listen(config.port, () => {
     console.log(`Iniciado o servidor na porta: ${config.port}`)
-    require('./datahandler').clearLatest();
 });

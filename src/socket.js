@@ -7,13 +7,12 @@ function init(server)
 {
     io = new Server(server);
     io.on('connection', (socket) => {  
-        console.log(`[+] Socket: ${socket.id}`)    
-         
+      
         socket.on('disconnect', () => {
-            console.log(`[-] Socket: ${socket.id}`)      
+             
         });        
 
-        socket.on('requestLatest', ()=> {
+        socket.on('requestLatest', ()=> {            
             sendToID(socket.id, 'latest', datahandler.latestData);
         });
     });

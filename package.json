@@ -4,7 +4,8 @@
   "description": "H2V Servidor web para gráficos",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "start": "node ."
   },
   "repository": {
     "type": "git",

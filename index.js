@@ -20,8 +20,8 @@ function randrange(min, max) {
 if (!fs.existsSync(path.join(__dirname, "config.json")))
     fs.writeFileSync(path.join(__dirname, "config.json"), JSON.stringify({
         'port': 8080,
-        'secret': randomSecret(),
-        'senha': "EDITE_A_SENHA!"
+        'senha': "EDITE_A_SENHA!",
+        'secret': randomSecret()
     }))
 
 
